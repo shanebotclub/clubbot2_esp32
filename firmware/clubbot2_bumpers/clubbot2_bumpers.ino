@@ -1,6 +1,6 @@
 #include <Arduino.h>
 
-// Bumper set up
+
 struct Bumper {
   const char* name;
   uint8_t pin;
@@ -17,18 +17,6 @@ Bumper bumpers[] = {
 };
 
 const int NUM = sizeof(bumpers) / sizeof(bumpers[0]);
-
-// Encoder pins
-const int LEFT_A = 34;
-const int LEFT_B = 35;
-const int RIGHT_A = 36;
-const int RIGHT_B = 39;
-
-// Encoder counters
-volatile long left_forward = 0;
-volatile long left_backward = 0;
-volatile long right_forward = 0;
-volatile long right_backward = 0;
 
 
 void setup() {
