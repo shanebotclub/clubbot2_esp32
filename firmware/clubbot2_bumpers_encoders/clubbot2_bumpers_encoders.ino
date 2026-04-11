@@ -19,8 +19,8 @@ Bumper bumpers[] = {
 const int NUM = sizeof(bumpers) / sizeof(bumpers[0]);
 
 // Encoder pins
-const int LEFT_A = 34;
-const int LEFT_B = 35;
+const int LEFT_A = 35;
+const int LEFT_B = 34;
 const int RIGHT_A = 36;
 const int RIGHT_B = 39;
 
