@@ -125,4 +125,37 @@ void loop() {
     Serial.println();
   }
 
-  // ----------------
+  // -----------------------------
+  // ENCODERS (every 100ms)
+  // -----------------------------
+  if (millis() - lastEnc >= 100) {
+    lastEnc = millis();
+
+    pcnt_get_counter_value(PCNT_LF, &cntLF);
+    pcnt_get_counter_value(PCNT_LB, &cntLB);
+    pcnt_get_counter_value(PCNT_RF, &cntRF);
+    pcnt_get_counter_value(PCNT_RB, &cntRB);
+
+    Serial.print("ENC ");
+    Serial.print("left_forward=");  Serial.print(cntLF);
+    Serial.print(" left_backward="); Serial.print(cntLB);
+    Serial.print(" right_forward="); Serial.print(cntRF);
+    Serial.print(" right_backward="); Serial.println(cntRB);
+  }
+
+  // -----------------------------
+  // IMU (every 50ms)
+  // -----------------------------
+  if (millis() - lastIMU >= 50) {
+    lastIMU = millis();
+    mpu->update();
+
+    Serial.print("IMU ");
+    Serial.print("ax="); Serial.print(mpu->getAccX());
+    Serial.print(" ay="); Serial.print(mpu->getAccY());
+    Serial.print(" az="); Serial.print(mpu->getAccZ());
+    Serial.print(" gx="); Serial.print(mpu->getGyroX());
+    Serial.print(" gy="); Serial.print(mpu->getGyroY());
+    Serial.print(" gz="); Serial.println(mpu->getGyroZ());
+  }
+}
