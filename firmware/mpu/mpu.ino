@@ -29,7 +29,6 @@ void setup() {
 }
 
 void loop() {
-  Serial.println("RUNNING");
   delay(1000);
   mpu.update();
 
