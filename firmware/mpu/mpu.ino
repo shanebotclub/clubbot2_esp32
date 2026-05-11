@@ -1,4 +1,3 @@
-THIS_SHOULD_FAIL
 #include <Wire.h>
 #include <MPU6050_light.h>
 
