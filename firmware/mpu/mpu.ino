@@ -8,6 +8,7 @@ unsigned long lastPrint = 0;
 void setup() {
   Serial.begin(115200);
   delay(2000);
+  Serial.println("BOOT OK");
 
   // I2C setup
   Wire.begin(21, 22);  // SDA=21, SCL=22
@@ -28,6 +29,8 @@ void setup() {
 }
 
 void loop() {
+  Serial.println("RUNNING");
+  delay(1000);
   mpu.update();
 
   unsigned long now = millis();
