@@ -9,34 +9,34 @@ std_msgs__msg__Int32 msg;
 rclc_support_t support;
 rcl_allocator_t allocator;
 rcl_node_t node;
+rclc_executor_t executor;
 
-unsigned long last_pub = 0;
+unsigned long last_time = 0;
 
 void setup() {
-  Serial.begin(115200);
-  delay(2000);
+  // Transport: USB serial
+  set_microros_transports();
 
-  // Use USB serial for micro-ROS transport
-  set_microros_serial_transports(Serial);
+  delay(2000);
 
   allocator = rcl_get_default_allocator();
 
   rclc_support_init(&support, 0, NULL, &allocator);
-  rclc_node_init_default(&node, "esp32_node", "", &support);
-
+  rclc_node_init_default(&node, "micro_ros_arduino_node", "", &support);
   rclc_publisher_init_default(
-    &publisher,
-    &node,
-    ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32),
-    "esp32_test"
-  );
+      &publisher,
+      &node,
+      ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32),
+      "micro_ros_arduino_node_publisher");
+
+  msg.data = 0;
 }
 
 void loop() {
-  if (millis() - last_pub > 500) {
+  if (millis() - last_time > 1000) {
     msg.data++;
     rcl_publish(&publisher, &msg, NULL);
-    last_pub = millis();
+    last_time = millis();
   }
 
   delay(10);
