@@ -14,13 +14,12 @@ rclc_executor_t executor;
 unsigned long last_time = 0;
 
 void setup() {
-  // Transport: USB serial
-  set_microros_transports();
+  Serial.begin(115200);
+  set_microros_serial_transports(Serial);
 
   delay(2000);
 
   allocator = rcl_get_default_allocator();
-
   rclc_support_init(&support, 0, NULL, &allocator);
   rclc_node_init_default(&node, "micro_ros_arduino_node", "", &support);
   rclc_publisher_init_default(
@@ -31,6 +30,7 @@ void setup() {
 
   msg.data = 0;
 }
+
 
 void loop() {
   if (millis() - last_time > 1000) {
