@@ -1,4 +1,4 @@
-#define MICROROS_TRANSPORT_SERIAL
+#define MICROROS_TRANSPORT_CUSTOM
 #include <micro_ros_arduino.h>
 #include <rcl/rcl.h>
 #include <rclc/rclc.h>
@@ -16,6 +16,7 @@ unsigned long last_time = 0;
 void setup() {
   Serial.begin(115200);
   set_microros_transports();
+
 
   delay(2000);
 
@@ -40,3 +41,4 @@ void loop() {
 
   delay(10);
 }
+
