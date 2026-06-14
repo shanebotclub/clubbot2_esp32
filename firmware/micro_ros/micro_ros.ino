@@ -1,3 +1,4 @@
+#define MICROROS_TRANSPORT_SERIAL
 #include <micro_ros_arduino.h>
 #include <rcl/rcl.h>
 #include <rclc/rclc.h>
@@ -9,13 +10,12 @@ std_msgs__msg__Int32 msg;
 rclc_support_t support;
 rcl_allocator_t allocator;
 rcl_node_t node;
-rclc_executor_t executor;
 
 unsigned long last_time = 0;
 
 void setup() {
   Serial.begin(115200);
-  set_microros_serial_transports(Serial);
+  set_microros_transports();
 
   delay(2000);
 
@@ -30,7 +30,6 @@ void setup() {
 
   msg.data = 0;
 }
-
 
 void loop() {
   if (millis() - last_time > 1000) {
